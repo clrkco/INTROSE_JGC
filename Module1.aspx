@@ -325,7 +325,7 @@
         </div>
         <div class="col-75">
 
-        <asp:DropDownList ID="proj" runat="server" OnSelectedIndexChanged="proj_SelectedIndexChanged"/>
+        <asp:DropDownList ID="lstProject" runat="server" OnSelectedIndexChanged="proj_SelectedIndexChanged"/>
         <br>
         </div>
         </div>
@@ -334,8 +334,8 @@
         Category:
         </div>
         <div class="col-75">
-        <asp:DropDownList ID="cat" runat="server" OnSelectedIndexChanged="cat_SelectedIndexChanged" />
-        </select><br>
+        <asp:DropDownList ID="lstCategory" runat="server" OnSelectedIndexChanged="cat_SelectedIndexChanged" />
+        <br>
         </div>
         </div>
         <div class="row">
@@ -343,9 +343,8 @@
         Material:
         </div>
         <div class="col-75">
-        <asp:DropDownList ID="mat" runat="server" OnSelectedIndexChanged="mat_SelectedIndexChanged" />
-
-        </select><br>
+        <asp:DropDownList ID="lstMaterials" runat="server" OnSelectedIndexChanged="mat_SelectedIndexChanged" />
+        <br>
         </div>
         </div>
         <div class="row">
@@ -353,7 +352,7 @@
         Quantity:
         </div>
         <div class="col-75"> 
-        <asp:TextBox ID="TextBox1" runat="server" type="number"></asp:TextBox><br />
+        <asp:TextBox ID="txtQuantity" runat="server" type="number"></asp:TextBox><br />
         </div>
         </div>
         <div class="row">
@@ -361,11 +360,11 @@
         Remarks:
         </div>
         <div class="col-75">
-        <asp:TextBox ID="remarks"  TextMode="MultiLine" runat="server"></asp:TextBox><br>
+        <asp:TextBox ID="txtRemarks"  TextMode="MultiLine" runat="server"></asp:TextBox><br>
         </div>
         </div>
-           <button type="submit">Cancel</button>
-           <button type="submit">Add</button>
+           <asp:Button runat="server" ID="btnClear" Text="Clear" OnClick="btnClear_Click"> </asp:Button>
+           <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click" ></asp:Button>
     
         <asp:GridView ID= "tblMATLIST" runat="server" AutoGenerateColumns="False" DataKeyNames="MATERIAL_ID" DataSourceID="SqlDataSource1">
             <Columns>
@@ -377,15 +376,12 @@
             </Columns>
 
         </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
     </form>
     
        
     
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
-    
-       
-    
-       <button type="submit" class = "submit">Submit</button>
+       <asp:Button runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click"/></asp:Button>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>
