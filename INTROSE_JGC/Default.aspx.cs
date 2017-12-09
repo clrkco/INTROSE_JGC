@@ -13,5 +13,11 @@ namespace INTROSE_JGC
         {
 
         }
+
+        protected void LoginView1_ViewChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

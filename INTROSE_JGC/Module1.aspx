@@ -159,6 +159,8 @@
         float: left;
         overflow-y: scroll;
         height: 300px;
+        top: 26px;
+        left: 3px;
     }
 
 
@@ -364,23 +366,25 @@
         </div>
            <button type="submit">Cancel</button>
            <button type="submit">Add</button>
+    
+        <asp:GridView ID= "tblMATLIST" runat="server" AutoGenerateColumns="False" DataKeyNames="MATERIAL_ID" DataSourceID="SqlDataSource1">
+            <Columns>
+                <asp:BoundField DataField="MATERIAL_ID" HeaderText="MATERIAL_ID" ReadOnly="True" SortExpression="MATERIAL_ID" />
+                <asp:BoundField DataField="NAME" HeaderText="NAME" SortExpression="NAME" />
+                <asp:BoundField DataField="PRICE" HeaderText="PRICE" SortExpression="PRICE" />
+                <asp:BoundField DataField="TYPE" HeaderText="TYPE" SortExpression="TYPE" />
+                <asp:BoundField DataField="CATEGORY" HeaderText="CATEGORY" SortExpression="CATEGORY" />
+            </Columns>
+
+        </asp:GridView>
     </form>
-    <div class = "tabletitle">Material List</div>
-    <table>
-
-      <tr>
-        <th>Material</th>
-        <th>Quantity</th> 
-        <th>Remarks</th>
-      </tr>
-      <tr>
-        <td>Material 1</td>
-        <td>10</td> 
-        <td>...</td>
-      </tr>
-
-            
-    </table>
+    
+       
+    
+       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
+    
+       
+    
        <button type="submit" class = "submit">Submit</button>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>

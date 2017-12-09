@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="INTROSE_JGC.Default" %>
-
 <!DOCTYPE html>
 <html>
 <style>
@@ -219,7 +218,12 @@
                 </div>
             </div>
             <div class = "home">
-                      <a href="/Module7.aspx" class = "menu">Admin/IT</a>             
+                <asp:LoginView ID="DefaultLoginView" runat="server">
+                    <AnonymousTemplate>
+                        <asp:HyperLink runat="server" NavigateUrl="~/Module7.aspx" Text="Admin" ForeColor="White"></asp:HyperLink>
+                    </AnonymousTemplate>
+                </asp:LoginView>
+                              
              </div>
         
         <div class = "home3">
