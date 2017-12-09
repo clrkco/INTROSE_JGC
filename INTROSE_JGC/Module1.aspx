@@ -267,7 +267,19 @@
         padding: 10px;
         margin: 10px;
 
-        }
+    }
+    .home3{
+        display: inline-block;
+        color: white;
+        position: relative;
+        font-size: 15px;
+        bottom: 43px;
+        margin-left: 12px;
+        margin-right: 10px;
+        left: 946px;
+        font-family: sans-serif;
+
+    }
 </style>
 
 <head runat="server">
@@ -287,41 +299,32 @@
         <div class = "home dropdown">
                 <div class = "dropdown">Projects</div>
                 <div class="dropdown-content">
-                    <a href="/Module1.aspx">Module 1</a>
-                    <a href="/Module2.aspx">Module 2</a>
-                    <a href="#">Module 6</a>
+                    <a href="Module1.aspx">Module 1</a>
+                    <a href="Module2.aspx">Module 2</a>
+                    <a href="Module6.aspx">Module 6</a>
                 </div>
             </div>
-            <div class = "home dropdown">
-                <div class = "dropdown">Admin/IT</div>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-        <div class = "home">
-            <a href="#" class = "menu">About</a>
+            <div class = "home">
+                      <a href="/Module7.aspx" class = "menu">Admin/IT</a>             
+             </div>
+        
+        <div class = "home3">
+            <a href="/UserProfile.aspx" class = "menu">User Profile</a>
         </div>
-        <div class = "home">
-            <a href="#" class = "menu">Contact</a>
-        </div>
-        <div class = "home">
+       <%--<div class = "home">
             <a href="/Login.aspx" class = "menu">Login</a>
-        </div>
+        </div>--%> 
+        <%-- PUT LOGOUT IN CONJUNCTION WITH FORMS AUTHENTICATION --%>
     </header>
-    <form class = "info">
+    <form class = "info" runat ="server">
         <div class="row">
         <div class="col-25">
         Project:
         </div>
         <div class="col-75">
-        <select>
-        <option value="dept1">PROJ1</option>
-        <option value="dept2">PROJ2</option>
-        <option value="dept3">PROJ3</option>
-        <option value="dept4">PROJ4</option>
-        </select><br>
+
+        <asp:DropDownList ID="proj" runat="server" OnSelectedIndexChanged="proj_SelectedIndexChanged"/>
+        <br>
         </div>
         </div>
         <div class="row">
@@ -329,11 +332,7 @@
         Category:
         </div>
         <div class="col-75">
-        <select class = "cat">
-        <option value="cat1">CAT1</option>
-        <option value="cat2">CAT2</option>
-        <option value="cat3">CAT3</option>
-        <option value="cat4">CAT4</option>
+        <asp:DropDownList ID="cat" runat="server" OnSelectedIndexChanged="cat_SelectedIndexChanged" />
         </select><br>
         </div>
         </div>
@@ -342,11 +341,8 @@
         Material:
         </div>
         <div class="col-75">
-        <select class = "cat">
-        <option value="mat1">MAT1</option>
-        <option value="mat2">MAT2</option>
-        <option value="mat3">MAT3</option>
-        <option value="mat4">MAT4</option>
+        <asp:DropDownList ID="mat" runat="server" OnSelectedIndexChanged="mat_SelectedIndexChanged" />
+
         </select><br>
         </div>
         </div>
@@ -354,8 +350,8 @@
         <div class="col-25">
         Quantity:
         </div>
-        <div class="col-75">
-        <input type="number" name="numofmat"><br>
+        <div class="col-75"> 
+        <asp:TextBox ID="TextBox1" runat="server" type="number"></asp:TextBox><br />
         </div>
         </div>
         <div class="row">
@@ -363,7 +359,7 @@
         Remarks:
         </div>
         <div class="col-75">
-        <textarea name="remarks" ></textarea><br>
+        <asp:TextBox ID="remarks"  TextMode="MultiLine" runat="server"></asp:TextBox><br>
         </div>
         </div>
            <button type="submit">Cancel</button>

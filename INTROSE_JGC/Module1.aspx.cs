@@ -13,5 +13,21 @@ namespace INTROSE_JGC
         {
 
         }
+
+        protected void proj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void mat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace INTROSE_JGC
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Contact : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
