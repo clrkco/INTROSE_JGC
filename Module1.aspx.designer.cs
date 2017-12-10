@@ -13,6 +13,15 @@ namespace INTROSE_JGC {
     public partial class Module1 {
         
         /// <summary>
+        /// LoginView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView LoginView;
+        
+        /// <summary>
         /// lstProject control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace INTROSE_JGC {
         protected global::System.Web.UI.WebControls.DropDownList lstProject;
         
         /// <summary>
+        /// lstProjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource lstProjects;
+        
+        /// <summary>
         /// lstCategory control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace INTROSE_JGC {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList lstCategory;
+        
+        /// <summary>
+        /// lstCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource lstCat;
         
         /// <summary>
         /// lstMaterials control.
@@ -85,13 +112,13 @@ namespace INTROSE_JGC {
         protected global::System.Web.UI.WebControls.GridView tblMATLIST;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// TEMP_TABLE1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource TEMP_TABLE1;
         
         /// <summary>
         /// btnSubmit control.
@@ -101,5 +128,14 @@ namespace INTROSE_JGC {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
     }
 }

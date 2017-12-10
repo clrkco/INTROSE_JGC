@@ -192,18 +192,18 @@
 <body>
     <header>
         <div class="imgcontainer">
-            <a href="/Default.aspx"><img src="jgc.png" alt="Avatar" class="avatar"> </a>
+            <a href="/Default.aspx"><img src="../jgc.png" alt="Avatar" class="avatar"> </a>
         </div>
     </header>
     <form id="form1" runat="server">
     <div class = "login">
   <div class="form">
-    <input type="text" placeholder="Username" name="uname" id ="txtUsername" runat="server" required>
+    <input type="text" placeholder="Username" name="uname" id ="txtUsername" runat="server" required="required"/>
 
-    <input type="password" placeholder="Password" name="psw" id ="txtPassword" runat="server" required>
-      
+    <input type="password" placeholder="Password" name="psw" id ="txtPassword" runat="server" required="required"/>
+    <asp:CheckBox runat="server" Text="Remember Me" ID="cbxRememberMe" />
     <asp:button type="submit" Text ="Login" class="loginbutton" runat="server" onclick="Button1_Click" BackColor="#4CAF50"/>
-
+    <asp:Label runat="server" Font-Bold="true" ForeColor="Red" ID="lblNotif"></asp:Label>
     </div>
 
     </div>

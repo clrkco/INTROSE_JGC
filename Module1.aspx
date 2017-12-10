@@ -306,9 +306,17 @@
                     <a href="/Module6.aspx">Engineering Software License Allocation Monitoring System </a>
                 </div>
             </div>
-            <div class = "home">
-                      <a href="/Module7.aspx" class = "menu">Admin/IT</a>             
-             </div>
+            <asp:LoginView ID="LoginView" runat="server">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="Administrator">
+                                <ContentTemplate>
+                                    <asp:HyperLink runat="server" NavigateUrl="~\Admin\Module7.aspx"></asp:HyperLink>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                            <asp:RoleGroup Roles="User">
+                            </asp:RoleGroup>
+                        </RoleGroups>          
+             </asp:LoginView>
         
         <div class = "home3">
             <a href="/UserProfile.aspx" class = "menu">User Profile</a>
@@ -325,7 +333,8 @@
         </div>
         <div class="col-75">
 
-        <asp:DropDownList ID="lstProject" runat="server" OnSelectedIndexChanged="proj_SelectedIndexChanged"/>
+        <asp:DropDownList ID="lstProject" runat="server" OnSelectedIndexChanged="proj_SelectedIndexChanged" DataSourceID="lstProjects" DataTextField="PROJECT_NAME" DataValueField="PROJECT_ID"/>
+            <asp:SqlDataSource ID="lstProjects" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT [PROJECT_ID], [PROJECT_NAME] FROM [CMT_PROJECT_LIST]"></asp:SqlDataSource>
         <br>
         </div>
         </div>
@@ -334,7 +343,8 @@
         Category:
         </div>
         <div class="col-75">
-        <asp:DropDownList ID="lstCategory" runat="server" OnSelectedIndexChanged="cat_SelectedIndexChanged" />
+        <asp:DropDownList ID="lstCategory" runat="server" OnSelectedIndexChanged="cat_SelectedIndexChanged" DataSourceID="lstCat" DataTextField="CATEGORY" DataValueField="CATEGORY" AutoPostBack="true" />
+            <asp:SqlDataSource ID="lstCat" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT DISTINCT CATEGORY FROM CMT_MATERIALS_MASTERLIST"></asp:SqlDataSource>
         <br>
         </div>
         </div>
@@ -343,7 +353,7 @@
         Material:
         </div>
         <div class="col-75">
-        <asp:DropDownList ID="lstMaterials" runat="server" OnSelectedIndexChanged="mat_SelectedIndexChanged" />
+        <asp:DropDownList ID="lstMaterials" runat="server" OnSelectedIndexChanged="mat_SelectedIndexChanged" AutoPostBack="true" />
         <br>
         </div>
         </div>
@@ -366,22 +376,24 @@
            <asp:Button runat="server" ID="btnClear" Text="Clear" OnClick="btnClear_Click"> </asp:Button>
            <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click" ></asp:Button>
     
-        <asp:GridView ID= "tblMATLIST" runat="server" AutoGenerateColumns="False" DataKeyNames="MATERIAL_ID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID= "tblMATLIST" runat="server" AutoGenerateColumns="False" DataSourceID="TEMP_TABLE1">
             <Columns>
-                <asp:BoundField DataField="MATERIAL_ID" HeaderText="MATERIAL_ID" ReadOnly="True" SortExpression="MATERIAL_ID" />
-                <asp:BoundField DataField="NAME" HeaderText="NAME" SortExpression="NAME" />
+                <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" SortExpression="PROJECT_ID" />
+                <asp:BoundField DataField="MATERIAL_ID" HeaderText="MATERIAL_ID" SortExpression="MATERIAL_ID" />
+                <asp:BoundField DataField="QUANTITY" HeaderText="QUANTITY" SortExpression="QUANTITY" />
+                <asp:BoundField DataField="REMARKS" HeaderText="REMARKS" SortExpression="REMARKS" />
                 <asp:BoundField DataField="PRICE" HeaderText="PRICE" SortExpression="PRICE" />
-                <asp:BoundField DataField="TYPE" HeaderText="TYPE" SortExpression="TYPE" />
-                <asp:BoundField DataField="CATEGORY" HeaderText="CATEGORY" SortExpression="CATEGORY" />
             </Columns>
 
         </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="DATA SOURCE=localhost:1521/INTROSE;DBA PRIVILEGE=SYSDBA;PERSIST SECURITY INFO=True;USER ID=SYS" ProviderName="ODP.NET, Managed Driver" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
-    </form>
+        <asp:SqlDataSource ID="TEMP_TABLE1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [TEMP_TABLE1]"></asp:SqlDataSource>
+        <asp:Button Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" runat="server"/>
+        <asp:Label runat="server" ID="lblStatus"></asp:Label>
+        </form>
     
        
     
-       <asp:Button Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" runat="server"/>
+       
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>

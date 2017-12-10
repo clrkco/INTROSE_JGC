@@ -75,29 +75,29 @@ namespace INTROSE_JGC
 
         protected void cat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //when category is selected, materials dropdownlist will be filled with data acc. to category
+            System.Diagnostics.Debug.WriteLine("CHANGED");
             string category = lstCategory.SelectedValue;
-            using (SqlConnection con = new SqlConnection("DATA SOURCE=INTROSE;DBA PRIVILEGE=SYSDBA;USER ID=SYS"))
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
             {
-                //insert correct query here to get material below
-                /* use SqlCommand.Parameters
-                 * SqlCommand command = new SqlCommand("Select @category from category");
-                 * command.Parameters.Add("@category",category); category is the string above.
-                 */
-                using (SqlCommand cmd = new SqlCommand("SELECT CustomerId, Name FROM Customers"))
+                using (SqlCommand cmd = new SqlCommand("SELECT MATERIAL_ID, NAME FROM CMT_MATERIALS_MASTERLIST WHERE CATEGORY = @category"))
                 {
-                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@category", category);
                     cmd.Connection = con;
+                    con.Open();
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
-                        DataSet ds = new DataSet();
+                        DataSet ds= new DataSet();
                         sda.Fill(ds);
+                        System.Diagnostics.Debug.WriteLine(ds.Tables[0]);
                         lstMaterials.DataSource = ds.Tables[0];
                         lstMaterials.DataTextField = "NAME";
                         lstMaterials.DataValueField = "MATERIAL_ID";
                         lstMaterials.DataBind();
                     }
+                    con.Close();
                 }
+
             }
         }
 
@@ -108,40 +108,72 @@ namespace INTROSE_JGC
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            //add to temp db
-            
-
-            int intQty = Int32.Parse(txtQuantity.Text);
+            int intQty = int.Parse(txtQuantity.Text);
             string strMaterial = lstMaterials.SelectedValue;
             string strRemarks = txtRemarks.Text;
-            //get price of selected material using SQL query
-            //float price = qty * priceofmaterial
-           
+            string strPrice;
+            float fPrice, fTotal = 0;
 
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+
+            using (SqlCommand cmd = new SqlCommand("SELECT PRICE FROM CMT_MATERIALS_MASTERLIST WHERE MATERIAL_ID = @matID"))
+            {
+                cmd.Parameters.AddWithValue("@matID", strMaterial);
+                cmd.Connection = con;
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                sdr.Read();
+                strPrice = sdr.GetValue(0).ToString();
+                fPrice = float.Parse(strPrice);
+                fTotal = fPrice * intQty;
+                sdr.Close();
+               
+                
+            }
+
+            SqlCommand cmd3 = new SqlCommand("INSERT INTO [TEMP_TABLE1] VALUES(@projID,@matID,@qty,@rmk,@price)");
+                cmd3.Parameters.AddWithValue("@projID",lstProject.SelectedValue);
+                cmd3.Parameters.AddWithValue("@matID", strMaterial);
+                cmd3.Parameters.AddWithValue("@price",fTotal);
+                cmd3.Parameters.AddWithValue("@rmk", strRemarks);
+                cmd3.Parameters.AddWithValue("@qty", intQty);
+                cmd3.Connection = con;
+                cmd3.ExecuteNonQuery();
+                lblStatus.Text = "Successfully added!";
+                con.Close();
+                Response.Redirect("Module1.aspx");
+        
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            //clear gridview or all current additions at datatable
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            SqlCommand cmd = new SqlCommand("DELETE TEMP_TABLE1");
+            con.Open();
+            cmd.Connection = con;
+            cmd.ExecuteNonQuery();
+            lblStatus.Text = "Successfully cleared entries!";
+            con.Close();
+            Response.Redirect("Module1.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            //ITO NA - Transfer data from temp db to orig db
-
-            //send datatable to insert to database
-           /* using (var bulkCopy = new SqlBulkCopy(_connection.ConnectionString, SqlBulkCopyOptions.KeepIdentity))
-            {
-                // my DataTable column names match my SQL Column names, so I simply made this loop. However if your column names don't match, just pass in which datatable name matches the SQL column name in Column Mappings
-                foreach (DataColumn col in table.Columns)
-                {
-                    bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName);
-                }
-
-                bulkCopy.BulkCopyTimeout = 600;
-                bulkCopy.DestinationTableName = destinationTableName;
-                bulkCopy.WriteToServer(table);
-            }*/
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            SqlCommand cmd = new SqlCommand("INSERT INTO CMT_PROJECT_DETAILS SELECT * FROM TEMP_TABLE1");
+            con.Open();
+            cmd.Connection = con;
+            cmd.ExecuteNonQuery();
+            lblStatus.Text = "Successfully submitted!";
+            SqlCommand cmd2 = new SqlCommand("DELETE TEMP_TABLE1");
+            cmd2.Connection = con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect("Module1.aspx");
+            
         }
 
     }

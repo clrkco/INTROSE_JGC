@@ -42,8 +42,8 @@
     footer{
         background-color: lightgrey;
         position: absolute;
-        right: 0;
-        bottom: 0;
+        right: 11px;
+        bottom: 309px;
         left: 0;
         padding: 15px;
         text-align: left;
@@ -373,7 +373,17 @@
         </div>
             <asp:Button runat="server" Text="Cancel" ID="btnCancel" OnClick="btnCancel_Click"/>
            <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click" />
-        <asp:GridView runat="server" ID="gvSoftwareList"></asp:GridView>
+        <asp:GridView runat="server" ID="gvSoftwareList" AutoGenerateColumns="False" DataKeyNames="PROJECT_ID" DataSourceID="SqlDataSource1">
+            <Columns>
+                <asp:BoundField DataField="PROJECT_ID" HeaderText="PROJECT_ID" ReadOnly="True" SortExpression="PROJECT_ID" />
+                <asp:BoundField DataField="SOFTWARE" HeaderText="SOFTWARE" SortExpression="SOFTWARE" />
+                <asp:BoundField DataField="MONTH" HeaderText="MONTH" SortExpression="MONTH" />
+                <asp:BoundField DataField="PROJECTED_USE" HeaderText="PROJECTED_USE" SortExpression="PROJECTED_USE" />
+                <asp:BoundField DataField="ACTUAL_USE" HeaderText="ACTUAL_USE" SortExpression="ACTUAL_USE" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_SOFTWARE_USAGE&quot;"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [CMT_SOFTWARE_USAGE]"></asp:SqlDataSource>
         <asp:Button runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" />
         </form>
     <div class = "tabletitle">Software List</div>

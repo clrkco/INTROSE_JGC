@@ -6,7 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using System.Security.Principal;
 namespace INTROSE_JGC
 {
     public class Global : HttpApplication
@@ -16,6 +16,20 @@ namespace INTROSE_JGC
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User != null)
+            {
+                if (HttpContext.Current.User.Identity is FormsIdentity)
+                {
+                    FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
+                    FormsAuthenticationTicket ticket = id.Ticket;
+                    string userData = ticket.UserData;
+                    string[] roles = userData.Split(',');
+                    HttpContext.Current.User = new GenericPrincipal(id, roles);
+                }
+            }
         }
     }
 }

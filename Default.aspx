@@ -217,24 +217,17 @@
                     <a href="/Module6.aspx">Engineering Software License Allocation Monitoring System </a>
                 </div>
             </div>
-            <div class = "home">
-                <asp:LoginView ID="DefaultLoginView" runat="server">
-                    <AnonymousTemplate>
-                        <asp:HyperLink runat="server" NavigateUrl="~/Module7.aspx" Text="Admin" ForeColor="White"></asp:HyperLink>
-                    </AnonymousTemplate>
-                </asp:LoginView>
-                              
-             </div>
+        <div class = "home">
+               <a href="/Admin/Module7.aspx" ><font color="White">Admin</font</a>          
+         </div>
         
         <div class = "home3">
             <a href="/UserProfile.aspx" class = "menu">User Profile</a>
         </div>
-        <%--<div class = "home">
-            <a href="/Login.aspx" class = "menu">Login</a>
-        </div>--%> 
-        <%-- PUT LOGOUT IN CONJUNCTION WITH FORMS AUTHENTICATION --%>
     </header>
     <form id="form1" runat="server" style = "white-space:nowrap">
+    
+
     <table id="t01">
 	    <caption >Projects</caption>
 	  <tr>
@@ -261,6 +254,7 @@
         <td>05-11-2017</td>
       </tr>
     </table>
+    <asp:LoginStatus runat="server" ID="LoginStatus" />
     </form>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
