@@ -301,9 +301,9 @@
         <div class = "home dropdown">
                 <div class = "dropdown">Projects</div>
                 <div class="dropdown-content">
-                    <a href="Module1.aspx">Module 1</a>
-                    <a href="Module2.aspx">Module 2</a>
-                    <a href="Module6.aspx">Module 6</a>
+                    <a href="/Module1.aspx">Project Infrastructure Cost Estimate </a>
+                    <a href="/Module2.aspx">Project Engineering and Management Software Cost Estimate </a>
+                    <a href="/Module6.aspx">Engineering Software License Allocation Monitoring System </a>
                 </div>
             </div>
             <div class = "home">
@@ -376,7 +376,7 @@
             </Columns>
 
         </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
+       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="DATA SOURCE=localhost:1521/INTROSE;DBA PRIVILEGE=SYSDBA;PERSIST SECURITY INFO=True;USER ID=SYS" ProviderName="ODP.NET, Managed Driver" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
     </form>
     
        

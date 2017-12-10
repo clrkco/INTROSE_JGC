@@ -309,9 +309,9 @@
         <div class = "home dropdown">
                 <div class = "dropdown">Projects</div>
                 <div class="dropdown-content">
-                    <a href="/Module1.aspx">Module 1</a>
-                    <a href="/Module2.aspx">Module 2</a>
-                    <a href="/Module6.aspx">Module 6</a>
+                    <a href="/Module1.aspx">Project Infrastructure Cost Estimate </a>
+                    <a href="/Module2.aspx">Project Engineering and Management Software Cost Estimate </a>
+                    <a href="/Module6.aspx">Engineering Software License Allocation Monitoring System </a>
                 </div>
             </div>
             <div class = "home">
@@ -326,18 +326,14 @@
         </div>--%> 
         <%-- PUT LOGOUT TO LOGIN IN CONJUNCTION WITH FORMS AUTHENTICATION --%>
     </header>
-    <form class = "info">
+    <form class = "info" runat="server">
         <div class="row">
         <div class="col-25">
         Project:
         </div>
         <div class="col-75">
-        <select>
-        <option value="dept1">PROJ1</option>
-        <option value="dept2">PROJ2</option>
-        <option value="dept3">PROJ3</option>
-        <option value="dept4">PROJ4</option>
-        </select><br>
+        <asp:DropDownList runat="server" ID="lstProject2" ></asp:DropDownList>
+            <br>
         </div>
         </div>
         <div class="row">
@@ -345,12 +341,8 @@
         Software:
         </div>
         <div class="col-75">
-        <select class = "soft" onchange='CheckSoft(this.value);'>
-        <option value="soft1">SOFT1</option>
-        <option value="soft2">SOFT2</option>
-        <option value="soft3">SOFT3</option>
-        <option value="others">Others</option>
-        </select><br>
+        <asp:DropDownList runat="server" ID="lstSoftware"></asp:DropDownList>
+            <br>
         <input type="text" name="soft" id="soft" style='display:none;'/>
         </div>
         </div>
@@ -359,7 +351,8 @@
         Month:
         </div>
         <div class="col-75">
-        <input type="month" name="month"><br>
+        <input runat="server" type="datetime-local" name="month" id="dtMonth"/>
+            <br>
         </div>
         </div>
         <div class="row">
@@ -367,7 +360,7 @@
         Projected To Be Used:
         </div>
         <div class="col-75">
-        <input type="number" name="projtobeused"><br>
+        <input runat="server" type="number" id="txtProjToBeUsed"/><br>
         </div>
         </div>
         <div class="row">
@@ -375,32 +368,17 @@
         Actual Used:
         </div>
         <div class="col-75">
-        <input type="number" name="projtobeused"><br>
+        <input runat="server" type="number" id="txtActualUsed"/><br>
         </div>
         </div>
-
-           <button type="submit">Cancel</button>
-           <button type="submit">Add</button>
-    </form>
+            <asp:Button runat="server" Text="Cancel" ID="btnCancel" OnClick="btnCancel_Click"/>
+           <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click" />
+        <asp:GridView runat="server" ID="gvSoftwareList"></asp:GridView>
+        <asp:Button runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" />
+        </form>
     <div class = "tabletitle">Software List</div>
-    <table>
-
-      <tr>
-        <th>Software</th>
-        <th>Month</th> 
-        <th>Projected Used</th>
-        <th>Actual Used</th>
-      </tr>
-      <tr>
-        <td>Software 1</td>
-        <td>December 2017</td> 
-        <td>12</td>
-		<td>10</td>
-      </tr>
-
-            
-    </table>
-       <button type="submit" class = "submit">Submit</button>
+    
+       
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>

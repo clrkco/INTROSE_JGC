@@ -309,9 +309,9 @@
         <div class = "home dropdown">
                 <div class = "dropdown">Projects</div>
                 <div class="dropdown-content">
-                    <a href="/Module1.aspx">Module 1</a>
-                    <a href="/Module2.aspx">Module 2</a>
-                    <a href="/Module6.aspx">Module 6</a>
+                    <a href="/Module1.aspx">Project Infrastructure Cost Estimate </a>
+                    <a href="/Module2.aspx">Project Engineering and Management Software Cost Estimate </a>
+                    <a href="/Module6.aspx">Engineering Software License Allocation Monitoring System </a>
                 </div>
             </div>
             <div class = "home">
@@ -332,7 +332,7 @@
         Project:
         </div>
         <div class="col-75">
-            <asp:DropDownList runat="server" ID="lstProject2" DataSourceID="SqlDataSource1" DataTextField="PROJECT_NAME" DataValueField="PROJECT_ID" OnSelectedIndexChanged="lstProject2_SelectedIndexChanged" ></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="lstProject2" DataTextField="PROJECT_NAME" DataValueField="PROJECT_ID" OnSelectedIndexChanged="lstProject2_SelectedIndexChanged" ></asp:DropDownList>
             <br>
         </div>
         </div>
@@ -341,7 +341,7 @@
 		Software:
         </div>
         <div class="col-75">
-        <asp:DropDownList runat="server" ID="lstSoftware" DataSourceID="SqlDataSource1" DataTextField="SOFTWARE" DataValueField="SOFTWARE" OnSelectedIndexChanged="lstSoftware_SelectedIndexChanged" ></asp:DropDownList>
+        <asp:DropDownList runat="server" ID="lstSoftware" DataTextField="SOFTWARE" DataValueField="SOFTWARE" OnSelectedIndexChanged="lstSoftware_SelectedIndexChanged" ></asp:DropDownList>
             <br>
 		<input type="text" name="soft" id="soft" style='display:none;'/>
         </div>
@@ -351,7 +351,7 @@
         Start Date:
         </div>
         <div class="col-75">
-        <input runat="server" type="date" name="startdate" id="dtStart"/><br>
+        <input runat="server" type="datetime-local" name="startdate" id="dtStart"/><br>
         </div>
         </div>
         <div class="row">
@@ -365,25 +365,20 @@
 
            <asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" ></asp:Button>
            <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click"></asp:Button>
-    </form>
+    
     <div class = "tabletitle">Software List</div>
 
-    <table>
-
-      <tr>
-        <th>Software</th>
-        <th>Start Date</th> 
-        <th>Number Of Months</th>
-      </tr>
-      <tr>
-        <td>Software 1</td>
-        <td>29-12-2017</td> 
-        <td>12</td>
-      </tr>
-
-			
-    </table>
+    <asp:GridView ID="tblView" runat="server" AutoGenerateColumns="False" DataKeyNames="SOFTWARE" DataSourceID="SqlDataSource1">
+        <Columns>
+            <asp:BoundField DataField="SOFTWARE" HeaderText="SOFTWARE" ReadOnly="True" SortExpression="SOFTWARE" />
+            <asp:BoundField DataField="PROJECT" HeaderText="PROJECT" SortExpression="PROJECT" />
+            <asp:BoundField DataField="STARTDATE" HeaderText="STARTDATE" SortExpression="STARTDATE" />
+            <asp:BoundField DataField="NUMBEROFMONTHS" HeaderText="NUMBEROFMONTHS" SortExpression="NUMBEROFMONTHS" />
+        </Columns>
+    </asp:GridView>
+       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;TEMPTABLE&quot;"></asp:SqlDataSource>
        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click"></asp:Button>
+    </form>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>

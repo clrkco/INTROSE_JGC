@@ -205,18 +205,6 @@
     <asp:button type="submit" Text ="Login" class="loginbutton" runat="server" onclick="Button1_Click" BackColor="#4CAF50"/>
 
     </div>
-    <div>
-        <label><input type="checkbox"> Remember me 
-        </label>
-
-        <div class="modifypass">
-        <label>
-            
-            </label>
-
-        <div class ="pass"> <a href="/ChangePassword.aspx">Change password</a></div>
-    </div>
-    </div>
 
     </div>
     </form>
