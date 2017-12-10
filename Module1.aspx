@@ -143,7 +143,7 @@
     form{
         text-align: left;
         margin: 0 auto 20px;
-        padding 45px;
+        padding: 45px;
     }
 
 
@@ -293,7 +293,7 @@
 <body>
     <header>
         <div class="imgcontainer">
-            <a href="/Default.aspx"><img src="jgc.png" alt="Avatar" class="avatar"> </a>
+            <a href="/Default.aspx"><img src="jgc.png" alt="Avatar" class="avatar"/> </a>
         </div>
         <div class = "home">
             <a href="/Default.aspx" class = "menu">Home</a>
@@ -376,12 +376,12 @@
             </Columns>
 
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
+       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM &quot;CMT_MATERIALS_MASTERLIST&quot;"></asp:SqlDataSource>
     </form>
     
        
     
-       <asp:Button runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click"/></asp:Button>
+       <asp:Button Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" runat="server"/>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>

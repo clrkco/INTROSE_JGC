@@ -326,12 +326,13 @@
         </div>--%> 
         <%-- PUT LOGOUT TO LOGIN VIEW IN CONJUNCTION WITH FORMS AUTHENTICATION --%>
     </header>
-    <form class = "info">
+    <form id="form1" runat="server">
         <div class="row">
         <div class="col-25">
         Project:
         </div>
         <div class="col-75">
+            <asp:DropDownList runat="server" ID="lstProject2" DataSourceID="SqlDataSource1" DataTextField="PROJECT_NAME" DataValueField="PROJECT_ID" OnSelectedIndexChanged="lstProject2_SelectedIndexChanged" ></asp:DropDownList>
             <br>
         </div>
         </div>
@@ -340,12 +341,8 @@
 		Software:
         </div>
         <div class="col-75">
-        <select class = "soft" onchange='CheckSoft(this.value);'>
-        <option value="soft1">SOFT1</option>
-        <option value="soft2">SOFT2</option>
-        <option value="soft3">SOFT3</option>
-        <option value="others">Others</option>
-        </select><br>
+        <asp:DropDownList runat="server" ID="lstSoftware" DataSourceID="SqlDataSource1" DataTextField="SOFTWARE" DataValueField="SOFTWARE" OnSelectedIndexChanged="lstSoftware_SelectedIndexChanged" ></asp:DropDownList>
+            <br>
 		<input type="text" name="soft" id="soft" style='display:none;'/>
         </div>
         </div>
@@ -354,7 +351,7 @@
         Start Date:
         </div>
         <div class="col-75">
-        <input type="date" name="startdate"><br>
+        <input runat="server" type="date" name="startdate" id="dtStart"/><br>
         </div>
         </div>
         <div class="row">
@@ -362,14 +359,15 @@
         Number Of Months:
         </div>
         <div class="col-75">
-        <input type="number" name="numofmons"><br>
+        <input runat="server" type="number" id="txtNumofMons"/><br>
         </div>
         </div>
 
-           <button type="submit">Cancel</button>
-           <button type="submit">Add</button>
+           <asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" ></asp:Button>
+           <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click"></asp:Button>
     </form>
     <div class = "tabletitle">Software List</div>
+
     <table>
 
       <tr>
@@ -385,7 +383,7 @@
 
 			
     </table>
-       <button type="submit" class = "submit">Submit</button>
+       <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click"></asp:Button>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>
