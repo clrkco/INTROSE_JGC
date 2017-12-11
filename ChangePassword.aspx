@@ -218,20 +218,18 @@
             <a href="/UserProfile.aspx" class = "menu">User Profile</a>
         </div>
 
-        <%--<div class = "home">
-            <a href="/Login.aspx" class = "menu">Login</a>
-        </div>--%> 
-        <%-- PUT LOGOUT IN CONJUNCTION WITH FORMS AUTHENTICATION --%>
     </header>
     <form id="form1" runat="server">
     <div class = "login">
     <div class="form">
-      <div class = "message" >Change Your Password</div>
-    <input type="text" placeholder="Old Password" name="opassname" required>
-    <input type="text" placeholder="New Password" name="npassname" required>
-    <input type="text" placeholder="Confirm New Password" name="cnpassname" required>
-   <button type="submit">Change Password</button>
-	<button type="submit">Cancel</button>
+    <div class = "message" >Change Your Password</div>
+    <input runat="server" type="text" placeholder="Old Password" name="opassname" id="txtOld" required>
+    <input runat="server" type="text" placeholder="New Password" name="npassname" id="txtNew" required>
+    <input runat="server" type="text" placeholder="Confirm New Password" name="cnpassname" id= "txtNewC" required>
+   <asp:Button runat="server" ID="btnChangePass" Text="ChangePassword" ForeColor="White" BackColor="#4CAF50" OnClick="btnChangePass_Click" />
+   <asp:Button runat="server" ID="btnCancel" Text="Cancel" ForeColor="White" BackColor="#4CAF50" OnClick="btnCancel_Click" />
+    <asp:Label runat="server" ID="lblStatus" ForeColor="Red"></asp:Label>
+     <asp:Label runat="server" ID="lblSuccess" ForeColor="Green"></asp:Label>
 
     </div>
 

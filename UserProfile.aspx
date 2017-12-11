@@ -261,23 +261,24 @@
                       <a href="/Module7.aspx" class = "menu">Admin/IT</a>             
              </div>
           
-         <div class = "home2">
-            <a href="#<%-- go to login after successful deletion of auth--%>" class = "menu" onclick="alert('You have successfully logged out')">Logout</a>
-        </div>
+         
     </header>
     <form id="form1" runat="server">
+        <div class = "home2">
+           <asp:LoginStatus runat="server" ForeColor="White" />
+        </div>
     <div class = "login">
   <div class="form">
     <div class = "userinfo">
     <div class = "info-left">Username: </div>
-    <div class = "info-right">User1 </div>
+    <asp:Label runat="server" ID="lblUser"></asp:Label>
     </div>
       <br />
     <div class = "userinfo">
     <div class = "info-left">Department: </div>
-    <div class = "info-right">IT </div>
+    <asp:Label runat="server" ID="lblDept"></asp:Label>
     </div>
-    <a href="ChangePass.aspx"><button type="submit" class="changepassbutton">Change Password</button></a>
+    <asp:Button runat="server" ID="btnChangePass" Text="Change Password" BackColor="#4CAF50" OnClick="btnChangePass_Click" ForeColor="White"/>
 
 
     </div>

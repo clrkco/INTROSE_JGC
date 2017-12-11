@@ -164,10 +164,12 @@
         padding: 10px;
         display: inline-block;
         position: relative;
-        width:400px;
+        width:589px;
         float: left;
         overflow-y: scroll;
         height: 300px;
+        top: 0px;
+        left: 0px;
     }
 
 
@@ -300,24 +302,25 @@
             <a href="/Login.aspx" class = "menu" onclick="alert('You have successfully logged out')">Logout</a>
         </div>
     </header>
-    <form class="info">
-    <div class = "tabletitle">User List</div>
-    <table>
-
-      <tr>
-        <th>Username</th>
-        <th>Department</th>
-		<th>User Role</th>
-      </tr>
-      <tr>
-        <td>User1</td>
-        <td>IT</td>
-		<td>Regular</td>
-      </tr>
-
-            
-    </table>
-			<button type="submit">Edit User Role</button>
+    <form class="info" runat="server">
+    <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" OnRowDataBound="OnRowDataBound">
+        <Columns>
+            <asp:BoundField DataField="Username" HeaderText="Username" />
+            <asp:TemplateField HeaderText="Role">
+                <ItemTemplate>
+                    <asp:DropDownList ID="ddlRoles" runat="server">
+                    </asp:DropDownList>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Role">
+                <ItemTemplate>
+                    <asp:Button ID="btnUpdate" Text="Update" runat="server" CommandArgument='<%# Eval("EMPLOYEE_ID") %>'
+                        OnClick="UpdateRole" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+    <asp:Label runat="server" ID="lblState" ForeColor="Green"></asp:Label>
     </form>
 		    <form class = "info">
            <button type="submit">Export Database</button>

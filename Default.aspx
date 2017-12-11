@@ -193,6 +193,10 @@
 
     }
 		
+    .auto-style1 {
+        height: 37px;
+    }
+		
 </style>
 
 <head runat="server">
@@ -226,14 +230,14 @@
         </div>
     </header>
     <form id="form1" runat="server" style = "white-space:nowrap">
-    
-
+    <div class ="home3">
+    </div>
     <table id="t01">
 	    <caption >Projects</caption>
 	  <tr>
-        <th>Name</th>
-        <th>Department</th> 
-        <th>Start Date</th>
+        <th class="auto-style1">Name</th>
+        <th class="auto-style1">Department</th> 
+        <th class="auto-style1">Start Date</th>
       </tr>
       <tr>
         <td>Project 1</td>
@@ -254,10 +258,13 @@
         <td>05-11-2017</td>
       </tr>
     </table>
-    <asp:LoginStatus runat="server" ID="LoginStatus" />
+    
     </form>
     <footer>
         <div class ="foot"> &copy; JGC Philippines INC.</div>
     </footer>
+    </font>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
